@@ -1,0 +1,82 @@
+
+# Network Automation Assignment - GitHub Pages
+# Public page: do not include full student ID or personal details.
+
+repository: https://github.com/Jingjiasim/netlab
+
+answers:
+  planes:
+    question: "Where are the data, control and management planes in your network?"
+    answer: >
+      The data plane forwards packets between my six hosts through
+      three switches (s1, s2 and s3). The control plane is responsible
+      for learning MAC addresses and deciding where frames should go.
+      In my network, the switches use MAC learning instead of a
+      separate SDN controller. The management plane is represented
+      by my Python scripts and YAML configuration, which I use to
+      create, check and manage the network.
+
+  learning:
+    question: "How did your switches learn which port leads to each host? Use your MAC table evidence."
+    answer: >
+      My switches learned MAC addresses by examining the source
+      MAC address of incoming Ethernet frames. When I ran pingall,
+      traffic passed between all six hosts, allowing the switches
+      to learn which ports lead to different devices. According
+      to evidence/macs.txt, switch s1 learned that h1
+      (00:00:00:00:00:01) is reachable through port 1 and h2
+      (00:00:00:00:00:02) through port 2. It also learned that
+      h3 (00:00:00:00:00:03) is reachable through port 3,
+      which connects towards switch s2.
+
+  kind:
+    question: "Which of the four kinds of programmability is this assignment (a network described as data, then built and documented by scripts)? Why isn't it any of the other three?"
+    answer: >
+      This assignment demonstrates declarative programmability
+      because I describe the network using YAML data rather than
+      configuring every device manually. Python scripts read the
+      description and build and document the network. It is not
+      mainly device-level scripting, controller-based SDN or
+      API-based configuration because I am using a topology
+      description as the source of the network design.
+
+  two_am:
+    question: "Week 1's 2 a.m. change on 40 switches: what would be different if those switches were described like your network?"
+    answer: >
+      If all 40 switches were described using structured data,
+      the administrator could update the configuration in one
+      place instead of manually changing every switch. A script
+      could validate the changes before applying them, reducing
+      mistakes. Git could also record the changes and help restore
+      an earlier version if something went wrong.
+
+  model:
+    question: "What's the difference between your network's data model and its serialisation? Use YAML and JSON as the example."
+    answer: >
+      The data model defines the structure of my network, including
+      hosts, switches, IP addresses and links. Serialisation is
+      the format used to store or exchange that information.
+      My topology.yaml and topology.json can represent the same
+      network model even though YAML and JSON use different syntax.
+
+  check:
+    question: "Why is it better to catch bad data in check() than with pingall? What did IPv6 notice about a duplicate address that IPv4 didn't?"
+    answer: >
+      Checking the topology before building it helps detect
+      configuration errors early. My check() function detected
+      duplicate IPv4 and IPv6 addresses and a link to a
+      nonexistent switch in bad.yaml. During testing, IPv6
+      reported dadfailed when I assigned fd00:4919::1 to h2
+      because h1 already used that address. IPv4 accepted
+      10.19.0.1 as a secondary address without reporting
+      an equivalent DAD failure.
+
+  git:
+    question: "What does your Git history give you that copying files into folders named topology-v2-final wouldn't?"
+    answer: >
+      Git records each change with a commit message and allows
+      me to compare different versions of my files. It also
+      makes it easier to identify mistakes, restore previous
+      versions and share my work through GitHub. This is more
+      organised and reliable than creating multiple folders
+      with names such as topology-v2-final.
