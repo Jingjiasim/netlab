@@ -51,14 +51,38 @@ def check_mine(spec):
     return problems
 
 
-def check(spec):
-    """Return a list of problems in the description (an empty list means it looks fine).
 
-    Week 2 task: report any IP address that is used by more than one host.
-    """
+def check(spec):
+    """Return a list of problems in the network description."""
     problems = []
-    # TODO: your code here
+    seen_ipv4 = {}
+    seen_ipv6 = {}
+
+    for host in spec["hosts"]:
+        name = host["name"]
+
+        # Check duplicate IPv4 addresses
+        ipv4 = host["ip"].split("/")[0]
+
+        if ipv4 in seen_ipv4:
+            problems.append(
+                f"{name} and {seen_ipv4[ipv4]} both use {ipv4}"
+            )
+        else:
+            seen_ipv4[ipv4] = name
+
+        # Check duplicate IPv6 addresses
+        ipv6 = host["ipv6"].split("/")[0]
+
+        if ipv6 in seen_ipv6:
+            problems.append(
+                f"{name} and {seen_ipv6[ipv6]} both use {ipv6}"
+            )
+        else:
+            seen_ipv6[ipv6] = name
+
     return problems
+
 
 
 def build(spec):
