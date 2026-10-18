@@ -81,6 +81,19 @@ def check(spec):
         else:
             seen_ipv6[ipv6] = name
 
+    # Check whether every link connects existing nodes
+    valid_nodes = set(spec["switches"])
+
+    for host in spec["hosts"]:
+        valid_nodes.add(host["name"])
+
+    for link in spec["links"]:
+        for node in link:
+            if node not in valid_nodes:
+                problems.append(
+                    f"Link {link} refers to nonexistent node {node}"
+                )
+
     return problems
 
 

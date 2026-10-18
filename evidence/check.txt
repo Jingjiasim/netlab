@@ -1,0 +1,4 @@
+PROBLEM: h6 and h2 both use 10.19.0.2
+PROBLEM: h6 and h2 both use fd00:4919::2
+PROBLEM: Link ['s3', 's9'] refers to nonexistent node s9
+Fix the description and try again.
