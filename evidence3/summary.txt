@@ -1,0 +1,9 @@
+=== r1 route to h2 (specific /24) ===
+10.19.32.10 via 10.19.12.2 dev r1-eth1 src 10.19.12.1 uid 0 
+    cache 
+=== r1 route to h3 (summary /22) ===
+10.19.33.10 via 10.19.14.2 dev r1-eth2 src 10.19.14.1 uid 0 
+    cache 
+=== r1 route to h4 (summary /22) ===
+10.19.34.10 via 10.19.14.2 dev r1-eth2 src 10.19.14.1 uid 0 
+    cache 

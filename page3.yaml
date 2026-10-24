@@ -1,0 +1,36 @@
+# page3.yaml: the words on your Week 3 page. make_page3.py puts each answer under its question.
+# A few sentences each, in your own words, about YOUR network and YOUR evidence.
+# Leave a blank line between paragraphs. Never put your name or full student ID here.
+
+
+repository: https://github.com/Jingjiasim/netlab
+
+answers:
+  design:
+    question: "Describe your design: why these routers, LANs and links, and how you chose the addresses."
+    answer: |
+      I designed a network with four routers (r1, r2, r3 and r4) and four LANs, each connected to one host. The routers form a ring topology, which provides two possible physical paths between routers.
+
+      I used the address block 10.19.0.0/16 based on the last two digits of my student ID. Each LAN uses a /24 subnet, while the router-to-router links use /30 subnets to provide two usable IP addresses per link.
+
+  summary:
+    question: "Which route summarises several LANs? Which networks does it cover, why is it correct, and what else would it attract if you added a network inside its range?"
+    answer: |
+      Router r1 uses the summary route 10.19.32.0/22 via 10.19.14.2. It covers the LANs 10.19.32.0/24, 10.19.33.0/24 and 10.19.34.0/24, as well as the unused 10.19.35.0/24 subnet.
+
+      The summary route is correctly aligned and reduces the number of routing entries. Router r1 also has a more specific route to 10.19.32.0/24 through r2, which takes priority because of longest-prefix matching. If another LAN such as 10.19.35.0/24 were added, the summary route would also attract traffic to it, even if that LAN were not reachable through r4.
+
+  failure:
+    question: "When you took a link down, what happened, and why couldn't your routes recover even though another path existed? What would have recovered?"
+    answer: |
+      I disabled the r1-r2 link and tested connectivity from h1 to h2. All three ping packets were lost, resulting in 100% packet loss. After restoring the link, connectivity returned with 0% packet loss.
+
+      Although the ring topology provides an alternative path through r4 and r3, the static routes did not automatically change when the link failed. A dynamic routing protocol such as OSPF could detect the failure, calculate an alternative route and update the routing tables automatically.
+
+  control_plane:
+    question: "In your network, what was the control plane? Who worked out the routes, and what does that mean for a network of 40 routers?"
+    answer: |
+      The control plane was manually managed through the static routing configuration in network.yaml. I decided which networks each router should reach and specified the next-hop addresses. The Python script then applied these routes to the routers in Mininet.
+
+      In a larger network with 40 routers, manually configuring and maintaining static routes would be time-consuming and more likely to cause errors. A dynamic routing protocol such as OSPF would be more suitable because routers could exchange routing information and automatically adapt to topology changes.
+

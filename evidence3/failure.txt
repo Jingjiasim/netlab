@@ -1,0 +1,6 @@
+=== Link failure: r1-r2 disabled ===
+PING 10.19.32.10 (10.19.32.10) 56(84) bytes of data.
+
+--- 10.19.32.10 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2096ms
+
