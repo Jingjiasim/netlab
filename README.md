@@ -17,9 +17,3 @@ Broadcast traffic was replicated to the other hypervisors in the same VXLAN segm
 ## MTU
 
 Two solutions were tested. Fix A used a tenant MTU of 1450 with an underlay MTU of 1500. Fix B used a tenant MTU of 1500 with an underlay MTU of 9000. Both were tested using ping and iperf3.
-
-## AI Use Declaration
-
-ChatGPT was used as an AI assistance tool during this lab. It helped explain VXLAN encapsulation, VNI-based isolation, broadcast flooding, MAC learning and MTU overhead. It also assisted with implementing and troubleshooting the Python functions in the overlay builder, interpreting test results, and preparing written explanations.
-
-I executed the lab commands, tested the configurations, collected the evidence and reviewed the final results and written answers.
