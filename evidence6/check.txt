@@ -1,0 +1,4 @@
+PROBLEM: Tenant amber exceeds underlay MTU by 50 bytes (requires 1550, underlay supports 1500)
+PROBLEM: Tenant teal exceeds underlay MTU by 50 bytes (requires 1550, underlay supports 1500)
+PROBLEM: Tenant violet exceeds underlay MTU by 50 bytes (requires 1550, underlay supports 1500)
+Fix the design and try again: nothing was built.

@@ -1,0 +1,33 @@
+student_id_last4: "4919"
+
+underlay:
+  network: 10.19.0.0/24
+  mtu: 9000
+
+hypervisors: [hv1, hv2, hv3]
+
+tenants:
+  - name: amber
+    vni: 110
+    network: 10.19.50.0/24
+    mtu: 1500
+    vms:
+      - [amber1, hv1]
+      - [amber2, hv2]
+      - [amber3, hv3]
+
+  - name: teal
+    vni: 220
+    network: 10.19.50.0/24
+    mtu: 1500
+    vms:
+      - [teal1, hv1]
+      - [teal2, hv3]
+
+  - name: violet
+    vni: 330
+    network: 10.19.60.0/24
+    mtu: 1500
+    vms:
+      - [violet1, hv2]
+      - [violet2, hv3]

@@ -1,0 +1,35 @@
+== hv1: vxlan110 before any traffic
+b6:7b:5e:97:4f:0d vlan 1 master br110 permanent
+b6:7b:5e:97:4f:0d master br110 permanent
+00:00:00:00:00:00 dst 10.19.0.2 self permanent
+00:00:00:00:00:00 dst 10.19.0.3 self permanent
+PING 10.19.50.11 (10.19.50.11) 56(84) bytes of data.
+64 bytes from 10.19.50.11: icmp_seq=1 ttl=64 time=0.597 ms
+64 bytes from 10.19.50.11: icmp_seq=2 ttl=64 time=0.114 ms
+
+--- 10.19.50.11 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1001ms
+rtt min/avg/max/mdev = 0.114/0.355/0.597/0.241 ms
+== captured on hv3's underlay
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on hv3-eth0, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+13:28:30.316614 IP 10.19.0.1.36863 > 10.19.0.3.4789: VXLAN, flags [I] (0x08), vni 110
+ARP, Request who-has 10.19.50.11 tell 10.19.50.10, length 28
+
+1 packet captured
+1 packet received by filter
+0 packets dropped by kernel
+== hv1: vxlan110 after
+02:00:00:6e:00:0b master br110 
+b6:7b:5e:97:4f:0d vlan 1 master br110 permanent
+b6:7b:5e:97:4f:0d master br110 permanent
+00:00:00:00:00:00 dst 10.19.0.2 self permanent
+00:00:00:00:00:00 dst 10.19.0.3 self permanent
+02:00:00:6e:00:0b dst 10.19.0.2 self 
+== hv3: vxlan110 after
+02:00:00:6e:00:0a master br110 
+72:d0:cf:c9:90:bb vlan 1 master br110 permanent
+72:d0:cf:c9:90:bb master br110 permanent
+00:00:00:00:00:00 dst 10.19.0.1 self permanent
+00:00:00:00:00:00 dst 10.19.0.2 self permanent
+02:00:00:6e:00:0a dst 10.19.0.1 self 
